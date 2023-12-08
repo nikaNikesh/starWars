@@ -32,20 +32,37 @@ export default class ItemDetails extends Component {
 
         getData(itemId)
             .then((item) => this.setState({
-                item,
-                image: getImageUrl(item)
-            })
+                    item,
+                    image: getImageUrl(item)
+                })
             )
 
     }
 
+    generateItemField = (id, fields, item) => {
+        return fields.map((field) => {
+            return (
+                <li className="list-group-item"
+                    key={id}>
+                    <span className="term">{field.contentField}</span>
+                    <span>{item[field.serviceField]}</span>
+                </li>
+            )
+        })
+
+    }
+
+
     render() {
-        const { item, image } = this.state;
+        const {item, image} = this.state;
 
         if (!item) {
             return <span>Select a person from a list</span>;
         }
-        const {id, name, gender, birthYear, eyeColor} = this.state.item;
+
+        const {id, name} = this.state.item;
+        const itemField = this.generateItemField(id, this.props.field, item);
+
 
         return (
             <div className="person-details card">
@@ -55,18 +72,7 @@ export default class ItemDetails extends Component {
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                            <span className="term">Gender</span>
-                            <span>{gender}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Birth Year</span>
-                            <span>{birthYear}</span>
-                        </li>
-                        <li className="list-group-item">
-                            <span className="term">Eye Color</span>
-                            <span>{eyeColor}</span>
-                        </li>
+                        {itemField}
                     </ul>
                     <ErrorButton/>
                 </div>

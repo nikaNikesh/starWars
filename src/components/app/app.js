@@ -73,9 +73,14 @@ export default class App extends Component {
 
         const starshipDetails = (
             <ItemDetails
-                itemId={5}
+                itemId={9}
                 getData={getStarship}
-                getImageUrl={getImageStarship}/>
+                getImageUrl={getImageStarship}
+                field={[
+                    {serviceField: 'model', contentField: 'Model'},
+                    {serviceField: 'manufacturer', contentField: 'Manufacturer'},
+                    {serviceField: 'length', contentField: 'Length'}
+                ]}/>
         );
 
         return (
