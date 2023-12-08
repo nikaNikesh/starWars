@@ -5,10 +5,6 @@ import RandomPlanet from "../random-planet";
 import ErrorIndicator from "../error-indicator";
 
 import './app.css';
-import ErrorButton from "../error-button";
-import PeoplePage from "../people-page";
-import ItemList from "../item-list";
-import PersonDetails from "../person-details";
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundary from "../error-boundary";
 import Row from "../row";
@@ -73,9 +69,14 @@ export default class App extends Component {
 
         const starshipDetails = (
             <ItemDetails
-                itemId={5}
+                itemId={9}
                 getData={getStarship}
-                getImageUrl={getImageStarship}/>
+                getImageUrl={getImageStarship}
+                field={[
+                    {serviceField: 'model', contentField: 'Model'},
+                    {serviceField: 'manufacturer', contentField: 'Manufacturer'},
+                    {serviceField: 'length', contentField: 'Length'}
+                ]}/>
         );
 
         return (
