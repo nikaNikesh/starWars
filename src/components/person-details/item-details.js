@@ -57,7 +57,11 @@ export default class ItemDetails extends Component {
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
-                        {this.props.children}
+                        {
+                            React.Children.map(this.props.children, (child, idx) => {
+                                return React.cloneElement(child, {item})
+                            })
+                        }
                     </ul>
                     <ErrorButton/>
                 </div>

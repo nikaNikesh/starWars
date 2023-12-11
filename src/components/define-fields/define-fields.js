@@ -3,12 +3,12 @@ import React from "react";
 import "./define-fields.css"
 
 
-const DefineFields = ({serviceField, contentField}) => {
+const DefineFields = ({item, serviceField, contentField}) => {
 
     return (
         <li className="list-group-item">
             <span className="term">{contentField}</span>
-            <span>{serviceField}</span>
+            <span>{item[serviceField]}</span>
         </li>
     )
 }

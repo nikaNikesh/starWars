@@ -76,8 +76,8 @@ export default class App extends Component {
                 getData={getStarship}
                 getImageUrl={getImageStarship}>
                 <DefineFields serviceField='model' contentField='Model:'/>
-                <DefineFields serviceField='manufacturer' contentField='Manufacturer:'/>
                 <DefineFields serviceField='length' contentField='Length:'/>
+                <DefineFields serviceField='costInCredits' contentField='Cost:'/>
             </ItemDetails>
         );
 
