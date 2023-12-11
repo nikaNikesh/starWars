@@ -5,14 +5,13 @@ import RandomPlanet from "../random-planet";
 import ErrorIndicator from "../error-indicator";
 
 import './app.css';
-import ErrorButton from "../error-button";
-import PeoplePage from "../people-page";
-import ItemList from "../item-list";
+
 import PersonDetails from "../person-details";
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundary from "../error-boundary";
 import Row from "../row";
 import ItemDetails from "../person-details";
+import DefineFields from "../define-fields";
 
 export default class App extends Component {
 
@@ -60,22 +59,26 @@ export default class App extends Component {
         } = this.swapiService;
 
         const personDetails = (
-            <ItemDetails
-                itemId={11}
-                getData={getPerson}
-                getImageUrl={getImagePerson}
-                field={[
-                    {serviceField: 'gender', contentField: 'Gender'},
-                    {serviceField: 'eyeColor', contentField: 'Eye color'},
-                    {serviceField: 'birthYear', contentField: 'Birth year'}
-                ]}/>
-        );
+                <ItemDetails
+                    itemId={11}
+                    getData={getPerson}
+                    getImageUrl={getImagePerson}>
+                    <DefineFields serviceField='gender' contentField='Gender:'/>
+                    <DefineFields serviceField='eyeColor' contentField='Eye color:'/>
+                    <DefineFields serviceField='birthYear' contentField='Birth year:'/>
+                </ItemDetails>
+            )
+        ;
 
         const starshipDetails = (
             <ItemDetails
                 itemId={5}
                 getData={getStarship}
-                getImageUrl={getImageStarship}/>
+                getImageUrl={getImageStarship}>
+                <DefineFields serviceField='model' contentField='Model:'/>
+                <DefineFields serviceField='manufacturer' contentField='Manufacturer:'/>
+                <DefineFields serviceField='length' contentField='Length:'/>
+            </ItemDetails>
         );
 
         return (
