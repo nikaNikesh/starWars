@@ -6,6 +6,7 @@ import ErrorIndicator from "../error-indicator";
 import './app.css';
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundary from "../error-boundary";
+import {SwapiServiceProvider} from "../swapi-service-context";
 import {
     StarshipList,
     PersonList,
@@ -58,24 +59,17 @@ export default class App extends Component {
 
         return (
             <ErrorBoundary>
-                <div className="stardb-app">
-                    <Header/>
-                    <PersonDetails itemId={11} lol={'ghjk'} />
-                    <PlanetDetails itemId={5}/>
-                    <StarshipDetails itemId={9}/>
-                    <PersonList>
-                        {({name}) => <span>{name}</span>}
-                    </PersonList>
-
-                    <StarshipList>
-                        {({name}) => <span>{name}</span>}
-                    </StarshipList>
-
-                    <PlanetList>
-                        {({name}) => <span>{name}</span>}
-                    </PlanetList>
-
-                </div>
+                <SwapiServiceProvider value={this.swapiService}>
+                    <div className="stardb-app">
+                        <Header/>
+                        <PersonDetails itemId={11}/>
+                        <PlanetDetails itemId={5}/>
+                        <StarshipDetails itemId={9}/>
+                        <PersonList/>
+                        <StarshipList/>
+                        <PlanetList/>
+                    </div>
+                </SwapiServiceProvider>
             </ErrorBoundary>
         )
             ;

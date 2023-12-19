@@ -1,32 +1,29 @@
 import DefineFields from "../define-fields";
 import ItemDetails from "../person-details";
 import React from "react";
-import SwapiService from "../../services/swapi-service";
-
-const swapiService = new SwapiService;
-
-const {
-    getPerson,
-    getImagePerson,
-    getPlanet,
-    getImagePlanet,
-    getStarship,
-    getImageStarship
-} = swapiService;
+import {SwapiServiceConsumer} from "../swapi-service-context";
 
 const StarshipDetails = ({itemId}) => {
     return (
-        <ItemDetails
-            itemId={itemId}
-            getData={getStarship}
-            getImageUrl={getImageStarship}>
-            <DefineFields serviceField='model' contentField='Model:'/>
-            <DefineFields serviceField='length' contentField='Length:'/>
-            <DefineFields serviceField='costInCredits' contentField='Cost:'/>
-        </ItemDetails>
-    )
-
+        <SwapiServiceConsumer>
+            {
+                ({getStarship, getImageStarship}) => {
+                    return (
+                        <ItemDetails
+                            itemId={itemId}
+                            getData={getStarship}
+                            getImageUrl={getImageStarship}>
+                            <DefineFields serviceField='model' contentField='Model:'/>
+                            <DefineFields serviceField='length' contentField='Length:'/>
+                            <DefineFields serviceField='costInCredits' contentField='Cost:'/>
+                        </ItemDetails>
+                    );
+                }
+            }
+        </SwapiServiceConsumer>
+    );
 };
+
 const PersonDetails = ({itemId}) => {
     // return React.createElement(
     //     ItemDetails,
@@ -36,27 +33,44 @@ const PersonDetails = ({itemId}) => {
     //     React.createElement(DefineFields, { serviceField: 'birthYear', contentField: 'Birth year:' })
     //     );
     return (
-        <ItemDetails
-            itemId={itemId}
-            getData={getPerson}
-            getImageUrl={getImagePerson}>
-            <DefineFields serviceField='gender' contentField='Gender:'/>
-            <DefineFields serviceField='eyeColor' contentField='Eye color:'/>
-            <DefineFields serviceField='birthYear' contentField='Birth year:'/>
-        </ItemDetails>
-    )
+        <SwapiServiceConsumer>
+            {
+                ({getPerson, getImagePerson}) => {
+                    return (
+                        <ItemDetails
+                            itemId={itemId}
+                            getData={getPerson}
+                            getImageUrl={getImagePerson}>
+                            <DefineFields serviceField='gender' contentField='Gender:'/>
+                            <DefineFields serviceField='eyeColor' contentField='Eye color:'/>
+                            <DefineFields serviceField='birthYear' contentField='Birth year:'/>
+                        </ItemDetails>
+                    );
+                }
+            }
+        </SwapiServiceConsumer>
+    );
 };
+
 const PlanetDetails = ({itemId}) => {
     return (
-        <ItemDetails
-            itemId={itemId}
-            getData={getPlanet}
-            getImageUrl={getImagePlanet}>
+        <SwapiServiceConsumer>
+            {
+                ({getPlanet, getImagePlanet}) => {
+                    return (
+                        <ItemDetails
+                            itemId={itemId}
+                            getData={getPlanet}
+                            getImageUrl={getImagePlanet}>
 
-            <DefineFields serviceField="population" contentField="Population:"/>
-            <DefineFields serviceField="rotationPeriod" contentField="Rotation Period:"/>
-            <DefineFields serviceField="diameter" contentField="Diameter:"/>
-        </ItemDetails>
+                            <DefineFields serviceField="population" contentField="Population:"/>
+                            <DefineFields serviceField="rotationPeriod" contentField="Rotation Period:"/>
+                            <DefineFields serviceField="diameter" contentField="Diameter:"/>
+                        </ItemDetails>
+                    );
+                }
+            }
+        </SwapiServiceConsumer>
     );
 };
 
