@@ -6,6 +6,8 @@ import ErrorIndicator from "../error-indicator";
 import './app.css';
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundary from "../error-boundary";
+import Row from "../row";
+import {PeoplePage, PlanetPage, StarshipPage} from "../pages";
 import {SwapiServiceProvider} from "../swapi-service-context";
 import {
     StarshipList,
@@ -22,10 +24,8 @@ import DummySwapiService from "../../services/dummy-swapi-service";
 
 export default class App extends Component {
 
-
     state = {
-        showRandomPlanet: true,
-        swapiService: new DummySwapiService()
+        swapiService: new SwapiService()
     };
 
     onServiceChange = () => {
@@ -42,40 +42,19 @@ export default class App extends Component {
         });
     }
 
-    toggleRandomPlanet = () => {
-        this.setState((state) => {
-            return {
-                showRandomPlanet: !state.showRandomPlanet
-            }
-        });
-    };
-
-
     render() {
-        if (this.state.hasError) {
-            return <ErrorIndicator/>
-        }
-
-        const planet = this.state.showRandomPlanet ?
-            <RandomPlanet/> :
-            null;
-
-
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiService}>
                     <div className="stardb-app">
                         <Header onServiceChange={this.onServiceChange} />
-                        <PersonDetails itemId={11}/>
-                        <PlanetDetails itemId={5}/>
-                        <StarshipDetails itemId={9}/>
-                        <PersonList/>
-                        <StarshipList/>
-                        <PlanetList/>
+                        <RandomPlanet/>
+                        <PeoplePage/>
+                        <StarshipPage/>
+                        <PlanetPage/>
                     </div>
                 </SwapiServiceProvider>
             </ErrorBoundary>
-        )
-            ;
+        );
     }
 }
