@@ -2,23 +2,11 @@ import React, {Component} from 'react';
 
 import Header from "../header";
 import RandomPlanet from "../random-planet";
-import ErrorIndicator from "../error-indicator";
 import './app.css';
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundary from "../error-boundary";
-import Row from "../row";
 import {PeoplePage, PlanetPage, StarshipPage} from "../pages";
 import {SwapiServiceProvider} from "../swapi-service-context";
-import {
-    StarshipList,
-    PersonList,
-    PlanetList
-} from '../sw-components';
-import {
-    StarshipDetails,
-    PersonDetails,
-    PlanetDetails
-} from '../sw-components';
 import DummySwapiService from "../../services/dummy-swapi-service";
 
 
