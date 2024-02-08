@@ -12,7 +12,7 @@ const ItemList = (props) => {
 
     ItemList.propTypes = {
         onItemSelected: PropTypes.func,
-        date: PropTypes.arrayOf(PropTypes.object).isRequired,
+        data: PropTypes.arrayOf(PropTypes.object).isRequired,
         children: PropTypes.func.isRequired
     }
 

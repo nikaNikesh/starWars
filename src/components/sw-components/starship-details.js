@@ -3,9 +3,11 @@ import DefineFields from "../define-fields";
 import React from "react";
 import {withSwapiService} from "../hoc-helper";
 
+
 const StarshipDetails = (props) => {
+
     return (
-        <ItemDetails {...props}>
+        <ItemDetails {...props} >
             <DefineFields serviceField='model' contentField='Model:'/>
             <DefineFields serviceField='length' contentField='Length:'/>
             <DefineFields serviceField='costInCredits' contentField='Cost:'/>

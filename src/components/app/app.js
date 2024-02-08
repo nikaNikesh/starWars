@@ -8,6 +8,8 @@ import ErrorBoundary from "../error-boundary";
 import {PeoplePage, PlanetPage, StarshipPage} from "../pages";
 import {SwapiServiceProvider} from "../swapi-service-context";
 import DummySwapiService from "../../services/dummy-swapi-service";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {StarshipDetails} from "../sw-components";
 
 
 export default class App extends Component {
@@ -17,13 +19,13 @@ export default class App extends Component {
     };
 
     onServiceChange = () => {
-        this.setState(({ swapiService }) => {
+        this.setState(({swapiService}) => {
             const Service = swapiService instanceof SwapiService ?
-                                DummySwapiService : SwapiService;
+                DummySwapiService : SwapiService;
 
             console.log('switched to', Service.name);
 
-            return{
+            return {
                 swapiService: new Service()
             };
 
@@ -34,13 +36,20 @@ export default class App extends Component {
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiService}>
-                    <div className="stardb-app">
-                        <Header onServiceChange={this.onServiceChange} />
-                        <RandomPlanet/>
-                        <PeoplePage/>
-                        <StarshipPage/>
-                        <PlanetPage/>
-                    </div>
+                    <BrowserRouter>
+                        <div className="stardb-app">
+                            <Header onServiceChange={this.onServiceChange}/>
+                            <RandomPlanet/>
+                            <Routes>
+                                <Route path="/" element={<h2>Welcome star DB</h2>}/>
+                                <Route path="people" element={<PeoplePage/>}/>
+                                <Route path="planets" element={<PlanetPage/>}/>
+                                <Route path="starships" element={<StarshipPage/>} />
+                                <Route path="starships/:id"  element={<StarshipDetails />} />
+
+                            </Routes>
+                        </div>
+                    </BrowserRouter>
                 </SwapiServiceProvider>
             </ErrorBoundary>
         );
