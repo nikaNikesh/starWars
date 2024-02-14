@@ -5,5 +5,5 @@ import withChildFunction from "./with-child-function";
 export {
     withListData,
     withSwapiService,
-    withChildFunction
+    withChildFunction,
 };

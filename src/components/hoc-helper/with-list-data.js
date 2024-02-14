@@ -64,4 +64,5 @@ const withListData = (View) => {
 
 }
 
+
 export default withListData;

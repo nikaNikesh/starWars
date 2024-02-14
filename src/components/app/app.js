@@ -5,7 +5,7 @@ import RandomPlanet from "../random-planet";
 import './app.css';
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundary from "../error-boundary";
-import {PeoplePage, PlanetPage, StarshipPage} from "../pages";
+import {PeoplePage, PlanetPage, StarshipPage, SecretPage, LoginPage, RequireAuth} from "../pages";
 import {SwapiServiceProvider} from "../swapi-service-context";
 import DummySwapiService from "../../services/dummy-swapi-service";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -46,6 +46,12 @@ export default class App extends Component {
                                 <Route path="planets" element={<PlanetPage/>}/>
                                 <Route path="starships" element={<StarshipPage/>} />
                                 <Route path="starships/:id"  element={<StarshipDetails />} />
+                                <Route path="login" element={<LoginPage/>}/>
+                                <Route path="secret" element={
+                                    <RequireAuth>
+                                        <SecretPage/>
+                                    </RequireAuth>
+                                    }/>
 
                             </Routes>
                         </div>
