@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 
-import SwapiService from "../../services/swapi-service";
-
 import './item-details.css';
 import ErrorButton from "../error-button";
 
 export default class ItemDetails extends Component {
-
-    swapiService = new SwapiService;
 
     state = {
         item: null,
