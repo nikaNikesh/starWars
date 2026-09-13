@@ -17,7 +17,6 @@ export default class PeoplePage extends Component {
                 left={<PersonList onItemSelected={this.onItemSelected}/>}
                 right={<PersonDetails itemId={selectedItem}/>}
             />
-
         );
     }
 }

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import ErrorIndicator from "../error-indicator";
 
-
 export default class ErrorBoundary extends Component {
 
     state = {
@@ -9,7 +8,6 @@ export default class ErrorBoundary extends Component {
     }
 
     componentDidCatch() {
-        debugger;
         this.setState({
             hasError: true
         })

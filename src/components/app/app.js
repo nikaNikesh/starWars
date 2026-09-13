@@ -12,20 +12,15 @@ import DummySwapiService from "../../services/dummy-swapi-service";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {StarshipDetails} from "../sw-components";
 
-
 export default class App extends Component {
 
     state = {
         swapiService: new SwapiService()
     };
-
     onServiceChange = () => {
         this.setState(({swapiService}) => {
             const Service = swapiService instanceof SwapiService ?
                 DummySwapiService : SwapiService;
-
-            console.log('switched to', Service.name);
-
             return {
                 swapiService: new Service()
             };
@@ -37,7 +32,6 @@ export default class App extends Component {
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiService}>
-
                     <BrowserRouter>
                         <div className="stardb-app">
                             <Header onServiceChange={this.onServiceChange}/>

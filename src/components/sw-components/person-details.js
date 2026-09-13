@@ -4,13 +4,6 @@ import React from "react";
 import {withSwapiService} from "../hoc-helper";
 
 const PersonDetails = (props) => {
-    // return React.createElement(
-    //     ItemDetails,
-    //     {itemID: itemId, getData: getPerson, getImagePerson: getImagePerson},
-    //     React.createElement(DefineFields, { serviceField: 'gender', contentField: 'Gender:' }),
-    //     React.createElement(DefineFields, { serviceField: 'eyeColor', contentField: 'Eye color:' }),
-    //     React.createElement(DefineFields, { serviceField: 'birthYear', contentField: 'Birth year:' })
-    //     );
     return (
         <ItemDetails {...props}>
             <DefineFields serviceField='gender' contentField='Gender:'/>

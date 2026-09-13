@@ -2,9 +2,7 @@ import React, {Component} from "react";
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
-
 const withListData = (View) => {
-
 
     return class extends Component {
         state = {
@@ -24,10 +22,10 @@ const withListData = (View) => {
         }
 
         update() {
-        this.setState({
-            loading: true,
-            error: false
-        })
+            this.setState({
+                loading: true,
+                error: false
+            })
             this.props.getData()
                 .then((data) => {
                     this.setState({
@@ -41,12 +39,10 @@ const withListData = (View) => {
                         loading: false
                     });
                 });
-
         }
 
-
         render() {
-            const { data, loading, error } = this.state;
+            const {data, loading, error} = this.state;
 
             if (loading) {
                 return <Spinner/>
@@ -61,8 +57,6 @@ const withListData = (View) => {
             )
         }
     }
-
 }
-
 
 export default withListData;

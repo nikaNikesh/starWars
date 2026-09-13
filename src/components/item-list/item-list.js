@@ -5,20 +5,8 @@ import './item-list.css';
 
 const ItemList = (props) => {
     const {data, children, onItemSelected} = props;
-
-    ItemList.defaultProps = {
-        onItemSelected: () => {}
-    };
-
-    ItemList.propTypes = {
-        onItemSelected: PropTypes.func,
-        data: PropTypes.arrayOf(PropTypes.object).isRequired,
-        children: PropTypes.func.isRequired
-    }
-
     const items = data.map((item) => {
         const {id} = item;
-
         const content = children(item);
         return (
             <li className="list-group-item"
@@ -34,6 +22,16 @@ const ItemList = (props) => {
             {items}
         </ul>
     );
+}
+
+ItemList.defaultProps = {
+    onItemSelected: () => {}
+};
+
+ItemList.propTypes = {
+    onItemSelected: PropTypes.func,
+    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    children: PropTypes.func.isRequired
 }
 
 export default ItemList;

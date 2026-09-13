@@ -17,7 +17,6 @@ export default class AuthRouterProvider extends Component {
 
     };
 
-
     render() {
         const { isLoggedIn } = this.state;
 
